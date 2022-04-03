@@ -26,7 +26,7 @@ steps:
 - task: UnityBuildTask@3
   inputs:
     buildTarget: 'Win64'
-    unityProjectPath: '\THEi\THEi\DMT5522\Project\Prototype0003-THEi\VR Prototype'
+    unityProjectPath: '\THEi\THEi\DMT5661\Project\Prototype0003-THEi\VR Prototype'
     outputPath: '$(Build.BinariesDirectory)\Build'
     outputFileName: 'VR Prototype'
 
