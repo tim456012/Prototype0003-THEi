@@ -30,6 +30,11 @@ steps:
     outputPath: '$(Build.BinariesDirectory)\Build'
     outputFileName: 'VR Prototype'
 
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(Build.BinariesDirectory)\Build'
+    Contents: 'DoNotShip'
+
 #create the installer
 - task: BatchScript@1
   inputs:
