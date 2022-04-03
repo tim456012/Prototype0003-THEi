@@ -1,0 +1,56 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: Default
+  demands: 
+    Unity_2021.2.17f1
+
+steps:
+#get the previously secured library (if any) for performance reasons
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)\VR Prototype\Library'
+    Contents: '**/*'
+
+- task: CmdLine@2
+  inputs:
+    script: 'if EXIST "$(Build.BinariesDirectory)\Library\" move "$(Build.BinariesDirectory)\Library" "$(Build.Repository.LocalPath)\VR Prototype\Library"'
+
+
+- task: UnityActivateLicenseTask@1
+  inputs:
+    username: '$(unity.username)'
+    password: '$(unity.password)'
+    serial: '$(unity.serial)'
+    unityProjectPath: '\THEi\THEi\DMT5522\Project\Prototype0003-THEi\VR Prototype'
+    
+- script:
+    echo $(unityactivation.logsOutputPath)
+
+#unity PC build
+- task: UnityBuildTask@3
+  inputs:
+    buildTarget: 'Win64'
+    unityProjectPath: '\THEi\THEi\DMT5522\Project\Prototype0003-THEi\VR Prototype'
+    outputPath: '$(Build.BinariesDirectory)\Build'
+    outputFileName: 'VR Prototype'
+
+#create the installer
+- task: BatchScript@1
+  inputs:
+    filename: 'Installer/createsetup.bat'
+    arguments: '"$(Build.BinariesDirectory)\Build\*" "$(Build.ArtifactStagingDirectory)\SetupCreation" "0.1.$(Build.BuildNumber)"'
+    workingFolder: '$(Build.Repository.LocalPath)\Installer'
+
+#upload artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\SetupCreation'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
