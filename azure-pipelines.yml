@@ -22,17 +22,6 @@ steps:
   inputs:
     script: 'if EXIST "$(Build.BinariesDirectory)\Library\" move "$(Build.BinariesDirectory)\Library" "$(Build.Repository.LocalPath)\VR Prototype\Library"'
 
-
-- task: UnityActivateLicenseTask@1
-  inputs:
-    username: '$(unity.username)'
-    password: '$(unity.password)'
-    serial: '$(unity.serial)'
-    unityProjectPath: '\THEi\THEi\DMT5522\Project\Prototype0003-THEi\VR Prototype'
-    
-- script:
-    echo $(unityactivation.logsOutputPath)
-
 #unity PC build
 - task: UnityBuildTask@3
   inputs:
