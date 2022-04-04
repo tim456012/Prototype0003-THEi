@@ -20,14 +20,15 @@ steps:
     Contents: '**/*'
 
 #get the previously secured library (if any) for performance reasons
-- task: CopyFiles@2
-  name: DeleteOldAndImportLibrary
+- task: DeleteFiles@1
+  name: DeleteOldLibrary
   inputs:
-    SourceFolder: '$(Build.BinariesDirectory)\LibraryBackup'
-    Contents: '**\*'
-    TargetFolder: '$(Build.Repository.LocalPath)\Earthquake VR\Library'
-    OverWrite: true
-    ignoreMakeDirErrors: true
+    SourceFolder: '(Build.Repository.LocalPath)\Earthquake VR\Library'
+    Contents: '**/*'
+- task: CmdLine@2
+  name: ImportLibrary
+  inputs:
+    script: 'if EXIST "$(Build.BinariesDirectory)\LibraryBackup" move /y "$(Build.Repository.LocalPath)\Earthquake VR\Library"'
 
 - task: UnityActivateLicenseTask@1
   name: ActivateUnityLicense
