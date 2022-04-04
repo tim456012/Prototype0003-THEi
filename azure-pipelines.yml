@@ -27,6 +27,7 @@ steps:
     Contents: '**\*'
     TargetFolder: '$(Build.Repository.LocalPath)\Earthquake VR\Library'
     OverWrite: true
+    ignoreMakeDirErrors: true
 
 - task: UnityActivateLicenseTask@1
   name: ActivateUnityLicense
