@@ -28,7 +28,7 @@ steps:
 - task: CmdLine@2
   name: ImportLibrary
   inputs:
-    script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup" robocopy "$(Build.Repository.LocalPath)\LibraryBackup" "$(Build.Repository.LocalPath)\Earthquake VR\Library" /MIR'
+    script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup" robocopy "$(Build.Repository.LocalPath)\LibraryBackup" "$(Build.Repository.LocalPath)\Earthquake VR\Library" /mir'
 
 - task: UnityActivateLicenseTask@1
   name: ActivateUnityLicense
@@ -54,12 +54,13 @@ steps:
     Contents: '?(*_DoNotShip)'
 
 #Backup the library for next build
-- task: CopyFiles@2
+- task: CmdLine@2
   name: BackupLibrary 
   inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)\Earthquake VR\Library'
-    Contents: '**'
-    TargetFolder: '$(Build.Repository.LocalPath)\LibraryBackup'
+    script: 'robocopy '
+- task: CmdLine@2
+  inputs:
+    script: 'robocopy "$(Build.Repository.LocalPath)\Earthquake VR\Library" "$(Build.Repository.LocalPath)\LibraryBackup" /mir'
 
 #create the installer
 - task: BatchScript@1
@@ -72,6 +73,6 @@ steps:
 #upload artifact
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\Build'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\SetupCreation'
     ArtifactName: 'drop'
     publishLocation: 'Container'
