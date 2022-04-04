@@ -9,7 +9,7 @@ trigger:
 pool:
   name: Default
   demands: 
-    Server_Unity_2021.2.17f1
+    Unity_2021.2.17f1
 
 steps:
 #cleanup for unity build
@@ -26,14 +26,6 @@ steps:
   inputs:
     SourceFolder: '$(Build.Repository.LocalPath)\LibraryBackup'
     Contents: '**/*'
-
-#Active Unity License
-- task: UnityActivateLicenseTask@1
-  inputs:
-    username: '$(unity.username)'
-    password: '$(unity.password)'
-    serial: '$(unity.serial)'
-    unityProjectPath: 'VR Prototype'
 
 #unity PC build
 - task: UnityBuildTask@3
