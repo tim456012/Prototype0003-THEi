@@ -19,13 +19,13 @@ steps:
     Contents: '**/*'
 
 #get the previously secured library (if any) for performance reasons
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)\VR Prototype\Library'
+    Contents: '**/*'
 - task: CmdLine@2
   inputs:
     script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup\" move "$(Build.Repository.LocalPath)\LibraryBackup\" "$(Build.Repository.LocalPath)\VR Prototype\Library"'
-- task: DeleteFiles@1
-  inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)\LibraryBackup'
-    Contents: '**/*'
 
 #unity PC build
 - task: UnityBuildTask@3
