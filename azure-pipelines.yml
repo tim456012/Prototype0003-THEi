@@ -21,26 +21,26 @@ steps:
 #get the previously secured library (if any) for performance reasons
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)\VR Prototype\Library'
+    SourceFolder: '$(Build.Repository.LocalPath)\Earthquake VR\Library'
     Contents: '**/*'
 - task: CmdLine@2
   inputs:
-    script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup" robocopy "$(Build.Repository.LocalPath)\LibraryBackup" "$(Build.Repository.LocalPath)\VR Prototype\Library" /MIR'
+    script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup" robocopy "$(Build.Repository.LocalPath)\LibraryBackup" "$(Build.Repository.LocalPath)\Earthquake VR\Library" /MIR'
 
 - task: UnityActivateLicenseTask@1
   inputs:
     username: '$(Unity.Username)'
     password: '$(Unity.Password)'
     serial: '$(Unity.Serial)'
-    unityProjectPath: 'VR Prototype'
+    unityProjectPath: 'Earthquake VR'
 
 #unity PC build
 - task: UnityBuildTask@3
   inputs:
     buildTarget: 'Win64'
-    unityProjectPath: 'VR Prototype'
+    unityProjectPath: 'Earthquake VR'
     outputPath: '$(Build.BinariesDirectory)\Build'
-    outputFileName: 'VR Prototype'
+    outputFileName: 'Earthquake VR'
 
 #Delete DoNotShip folders
 - task: DeleteFiles@1
@@ -51,7 +51,7 @@ steps:
 #Backup the library for next build
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)\VR Prototype\Library'
+    SourceFolder: '$(Build.Repository.LocalPath)\Earthquake VR\Library'
     Contents: '**'
     TargetFolder: '$(Build.Repository.LocalPath)\LibraryBackup'
 
