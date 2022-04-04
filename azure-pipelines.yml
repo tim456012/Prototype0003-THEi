@@ -32,13 +32,13 @@ steps:
     username: '$(Unity.Username)'
     password: '$(Unity.Password)'
     serial: '$(Unity.Serial)'
-    unityProjectPath: 'test'
+    unityProjectPath: 'VR Prototype'
 
 #unity PC build
 - task: UnityBuildTask@3
   inputs:
     buildTarget: 'Win64'
-    unityProjectPath: 'test'
+    unityProjectPath: 'VR Prototype'
     outputPath: '$(Build.BinariesDirectory)\Build'
     outputFileName: 'VR Prototype'
 
