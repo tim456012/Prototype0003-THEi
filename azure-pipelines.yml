@@ -9,7 +9,7 @@ trigger:
 pool:
   name: Default
   demands: 
-    Unity_2021.2.17f1
+    Server_Unity_Build
 
 steps:
 #cleanup for unity build
@@ -25,7 +25,14 @@ steps:
     Contents: '**/*'
 - task: CmdLine@2
   inputs:
-    script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup\" move "$(Build.Repository.LocalPath)\LibraryBackup\" "$(Build.Repository.LocalPath)\VR Prototype\Library"'
+    script: 'if EXIST "$(Build.Repository.LocalPath)\LibraryBackup" robocopy "$(Build.Repository.LocalPath)\LibraryBackup" "$(Build.Repository.LocalPath)\VR Prototype\Library" /MIR'
+
+- task: UnityActivateLicenseTask@1
+  inputs:
+    username: '$(Unity.Username)'
+    password: '$(Unity.Password)'
+    serial: '$(Unity.Serial)'
+    unityProjectPath: 'VR Prototype'
 
 #unity PC build
 - task: UnityBuildTask@3
@@ -48,16 +55,15 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.Repository.LocalPath)\LibraryBackup'
 
-#create the installer
-- task: BatchScript@1
+- task: CopyFiles@2
   inputs:
-    filename: 'Installer/createsetup.bat'
-    arguments: '"$(Build.BinariesDirectory)\Build\*" "$(Build.ArtifactStagingDirectory)\SetupCreation" "0.1.$(Build.BuildNumber)"'
-    workingFolder: '$(Build.Repository.LocalPath)\Installer'
+    SourceFolder: '$(Build.BinariesDirectory)\Build'
+    Contents: '**\*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\Build'
 
 #upload artifact
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\SetupCreation'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\Build'
     ArtifactName: 'drop'
     publishLocation: 'Container'
