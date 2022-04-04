@@ -55,10 +55,7 @@ steps:
 
 #Backup the library for next build
 - task: CmdLine@2
-  name: BackupLibrary 
-  inputs:
-    script: 'robocopy '
-- task: CmdLine@2
+  name: BackupLibrary
   inputs:
     script: 'robocopy "$(Build.Repository.LocalPath)\Earthquake VR\Library" "$(Build.Repository.LocalPath)\LibraryBackup" /mir'
 
