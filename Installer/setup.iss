@@ -10,7 +10,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{25981732-CD7E-471C-9429-AA76C3EA6033}}
+AppId={25981732-CD7E-471C-9429-AA76C3EA6033}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -18,11 +18,13 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\THEi-DMT5661-GP1
+DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName=THEi-DMT5661-GP1
 DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
+OutputDir={#BuildTarget}
+OutputBaseFilename=SetupPc
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
