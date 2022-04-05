@@ -28,7 +28,7 @@ steps:
 - task: CmdLine@2
   name: ImportLibrary
   inputs:
-    script: 'if EXIST "$(Build.BinariesDirectory)\LibraryBackup" move /y "$(Build.Repository.LocalPath)\Earthquake VR\Library"'
+    script: 'if EXIST "$(Build.BinariesDirectory)\LibraryBackup" xcopy "$(Build.BinariesDirectory)\LibraryBackup" "$(Build.Repository.LocalPath)\Earthquake VR\Library" /y /e /c /h /i'
 
 - task: UnityActivateLicenseTask@1
   name: ActivateUnityLicense
