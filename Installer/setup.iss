@@ -5,6 +5,7 @@
 #define MyAppVersion "0.1p"
 #define MyAppPublisher "THEi-MTI-GP1"
 #define MyAppURL "https://www.thei.edu.hk/programme/innovation-and-information-technology/bachelor-of-science-honours-in-multimedia-technology-and-innovation"
+#define MyAppExeName "Earthquake VR Game.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
