@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d1bdb7a-1dcd-4b32-8da1-1038c43e17bd" name="Changes" comment="" />
+    <list default="true" id="6d1bdb7a-1dcd-4b32-8da1-1038c43e17bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Test Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,6 +15,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27KtTP07jovPWGhFNh5wAAtifdN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -55,6 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1649080615516</updated>
       <workItem from="1649080623299" duration="38000" />
+      <workItem from="1649122448164" duration="161000" />
     </task>
     <servers />
   </component>
