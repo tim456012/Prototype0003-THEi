@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.earthquakevr.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\THEi\\THEi\\DMT5661\\Project\\Prototype0003-THEi\\Earthquake VR\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Earthquake VR [Testing]"
+        }
+      }
+    }
+  ]
+}
