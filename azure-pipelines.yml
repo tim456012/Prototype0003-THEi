@@ -9,7 +9,7 @@ trigger:
 pool:
   name: Default
   demands: 
-    Server_Unity_Build
+    Local-Host
 
 steps:
 #cleanup for unity build
@@ -30,14 +30,6 @@ steps:
   inputs:
     script: 'if EXIST "$(Build.BinariesDirectory)\LibraryBackup" xcopy "$(Build.BinariesDirectory)\LibraryBackup" "$(Build.Repository.LocalPath)\Earthquake VR\Library" /y /e /c /h /i'
 
-- task: UnityActivateLicenseTask@1
-  name: ActivateUnityLicense
-  inputs:
-    username: '$(Unity.Username)'
-    password: '$(Unity.Password)'
-    serial: '$(Unity.Serial)'
-    unityProjectPath: 'Earthquake VR'
-
 #unity PC build
 - task: UnityBuildTask@3
   inputs:
@@ -51,7 +43,7 @@ steps:
   name: DeleteUnusedFiles
   inputs:
     SourceFolder: '$(Build.BinariesDirectory)\Build'
-    Contents: '?(*_DoNotShip)'
+    Contents: '?(*DoNotShip)'
 
 #Backup the library for next build
 - task: CopyFiles@2
