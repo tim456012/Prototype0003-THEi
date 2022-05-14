@@ -1,20 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BaseShake : MonoBehaviour
 {
+    public static bool StartShaking;
+    
     public GameObject GameObjectToShake;
+
     private bool shaking;
 
-    //loop - döngü
+    private void Start()
+    {
+        StartShaking = false;
+    }
+
     private void FixedUpdate()
     {
-        shakeGameObject(GameObjectToShake, 5, 3f);
+        if(StartShaking)
+            shakeGameObject(GameObjectToShake, 5, 3f);
+        else
+            shaking = false;
     }
 
     private void shakeGameObject(GameObject objectToShake, float shakeDuration, float decreasePoint, bool objectIs2D = false)
     {
-
         shaking = true;
         StartCoroutine(shakeGameObjectCOR(objectToShake, shakeDuration, decreasePoint, objectIs2D));
     }
@@ -32,29 +43,17 @@ public class BaseShake : MonoBehaviour
 
         float counter = 0f;
 
-        //shake speef - sallama hızı
         const float speed = 0.03f;
-
-        //rotation - rotasyon
         const float angleRot = 0.1f;
-
 
         while (counter < totalShakeDuration)
         {
             counter += Time.deltaTime;
             float decreaseSpeed = speed;
-
-
-            //objeyi salla
-
-            {
-                objTransform.position = defaultPos + Random.insideUnitSphere * decreaseSpeed;
-                objTransform.rotation = defaultRot * Quaternion.AngleAxis(Random.Range(-angleRot, angleRot), new Vector3(1f, 1f, 1f));
-            }
+            
+            objTransform.position = defaultPos + Random.insideUnitSphere * decreaseSpeed;
+            objTransform.rotation = defaultRot * Quaternion.AngleAxis(Random.Range(-angleRot, angleRot), new Vector3(1f, 1f, 1f));
             yield return null;
-
-
-
         }
     }
 }
