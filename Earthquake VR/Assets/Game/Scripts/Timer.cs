@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private int _timer;
-    private bool IsStart = true;
+    public bool isExtend;
+    public static bool IsStart = true;
+    public static int _timer;
+    
     private IEnumerator _startTimer;
     
     // Start is called before the first frame update
@@ -26,11 +28,16 @@ public class Timer : MonoBehaviour
 
         BaseShake.StartShaking = _timer switch
         {
-            5 => true,
-            30 => false,
+            10 => true,
+            20 => false,
+            30 => true,
+            50 => false,
+            60 => true,
+            70 => false,
             _ => BaseShake.StartShaking
         };
-
+        
+        Debug.Log(_timer);
     }
 
     private IEnumerator StartTimer()
@@ -38,5 +45,10 @@ public class Timer : MonoBehaviour
         yield return new WaitForSeconds(1);
         _timer++;
         IsStart = true;
+    }
+
+    public static int GetTimer()
+    {
+        return _timer;
     }
 }

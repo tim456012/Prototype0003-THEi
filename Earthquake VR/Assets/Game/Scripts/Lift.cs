@@ -5,7 +5,7 @@ using Valve.VR.InteractionSystem;
 
 public class Lift : MonoBehaviour
 {
-    public TeleportPoint teleportPoint;
+    public TeleportArea teleportArea;
     public GameObject door1, door2;
     
     private bool _btn1Pressed, _btn2Pressed;
@@ -22,9 +22,12 @@ public class Lift : MonoBehaviour
         if (_btn1Pressed && _btn2Pressed)
         {
             if (BaseShake.StartShaking)
+            {
                 BaseShake.StartShaking = false;
+                Timer.IsStart = false;
+            }
             
-            teleportPoint.locked = false;
+            teleportArea.locked = false;
             Destroy(door1);
             Destroy(door2);
         }

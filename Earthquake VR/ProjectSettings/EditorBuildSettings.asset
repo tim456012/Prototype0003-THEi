@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Game/Scenes/Start.unity
+    guid: 08465e284320eaf408b825655f198d4c
+  - enabled: 1
     path: Assets/Game/Scenes/Level 1.unity
     guid: 64fc0ce8255c1114497aab9984a64612
   - enabled: 1
     path: Assets/Game/Scenes/Level 2.unity
     guid: d0d9f3659eef0ed4497d5d066ac4afc8
+  - enabled: 1
+    path: Assets/Game/Scenes/Level 3.unity
+    guid: 87b3b2b190bf63647a0e97287308ae2c
+  - enabled: 1
+    path: Assets/Game/Scenes/End.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 8e024bd1ee305a440b55733939429b8d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b22954ad9702144418f910b7fd1172a1, type: 2}
